@@ -1,5 +1,0 @@
-*.pyc
-__pycache__/
-.device_id
-blocklist.txt
-*.log
