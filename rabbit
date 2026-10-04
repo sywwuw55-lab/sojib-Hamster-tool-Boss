@@ -1,29 +1,10 @@
 #!/bin/bash
-DEVICE_ID_FILE="/data/data/com.termux/files/home/.device_id"
-BLOCKLIST_FILE="/data/data/com.termux/files/home/blocklist.txt"
-
-if [ -f "$DEVICE_ID_FILE" ]; then
-    DEVICE_ID=$(cat "$DEVICE_ID_FILE")
-else
-    DEVICE_ID="RABBIT-$(cat /proc/sys/kernel/random/uuid | cut -d'-' -f1 | tr '[:lower:]' '[:upper:]')"
-    echo "$DEVICE_ID" > "$DEVICE_ID_FILE"
-fi
-
-if [ -f "$BLOCKLIST_FILE" ]; then
-    if grep -q "$DEVICE_ID" "$BLOCKLIST_FILE"; then
-        echo "============================================================"
-        echo " [X] ACCESS DENIED! Your device ($DEVICE_ID) is BLOCKED by Admin."
-        echo "============================================================"
-        exit 1
-    fi
-fi
 
 # ব্যানার শো করা
 clear
 echo "=========================================================="
 echo "[!] INITIALIZING SECURE HACKING ENVIRONMENT..."
 echo "[!] TARGET: WIRELESS VULNERABILITY ASSESSMENT"
-echo "[!] Your Device Unique Code: $DEVICE_ID"
 echo "=========================================================="
 echo ""
 echo "       (\\__/)   "
