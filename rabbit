@@ -1,41 +1,49 @@
 #!/bin/bash
+DEVICE_ID_FILE="/data/data/com.termux/files/home/.device_id"
+BLOCKLIST_FILE="/data/data/com.termux/files/home/blocklist.txt"
 
-# Load configuration if available
-if [ -f "$HOME/sojib-Hamster-tool-Boss/config.cfg" ]; then
-    source "$HOME/sojib-Hamster-tool-Boss/config.cfg"
+if [ -f "$DEVICE_ID_FILE" ]; then
+    DEVICE_ID=$(cat "$DEVICE_ID_FILE")
 else
-    echo "[!] Error: config.cfg not found!"
-    exit 1
+    DEVICE_ID="RABBIT-$(cat /proc/sys/kernel/random/uuid | cut -d'-' -f1 | tr '[:lower:]' '[:upper:]')"
+    echo "$DEVICE_ID" > "$DEVICE_ID_FILE"
 fi
 
-# Security check logic
-DEVICE_ID_FILE="$HOME/.rabbit_data/device_id"
-mkdir -p "$(dirname "$DEVICE_ID_FILE")"
-
-if [ ! -f "$DEVICE_ID_FILE" ]; then
-    uuidgen > "$DEVICE_ID_FILE" 2>/dev/null || cat /proc/sys/kernel/random/uuid > "$DEVICE_ID_FILE" 2>/dev/null || date +%s%N > "$DEVICE_ID_FILE"
+if [ -f "$BLOCKLIST_FILE" ]; then
+    if grep -q "$DEVICE_ID" "$BLOCKLIST_FILE"; then
+        echo "============================================================"
+        echo " [X] ACCESS DENIED! Your device ($DEVICE_ID) is BLOCKED by Admin."
+        echo "============================================================"
+        exit 1
+    fi
 fi
 
-UNIQUE_ID=$(cat "$DEVICE_ID_FILE" | tr -d '[:space:]')
-USER_DB="$HOME/sojib-Hamster-tool-Boss/users_list.txt"
+# ব্যানার শো করা
+clear
+echo "=========================================================="
+echo "[!] INITIALIZING SECURE HACKING ENVIRONMENT..."
+echo "[!] TARGET: WIRELESS VULNERABILITY ASSESSMENT"
+echo "[!] Your Device Unique Code: $DEVICE_ID"
+echo "=========================================================="
+echo ""
+echo "       (\\__/)   "
+echo "       (=\\'.\\'=)   "
+echo "       (\")_(\")   "
+echo ""
+echo "  ██╗  ██╗ █████╗ ███╗   ███╗███████╗████████╗███████╗██████╗ "
+echo "  ██║  ██║██╔══██╗████╗ ████║██╔════╝╚══██╔══╝██╔════╝██╔══██╗"
+echo "  ███████║███████║██╔████╔██║███████╗   ██║   █████╗  ██████╔╝"
+echo "  ██╔══██║██╔══██║██║╚██╔╝██║╚════██║   ██║   ██╔══╝  ██╔══██╗"
+echo "  ██║  ██║██║  ██║██║ ╚═╝ ██║███████║   ██║   ███████╗██║  ██║"
+echo "  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝"
+echo ""
+echo "[!] WARNING: FOR AUTHORIZED TESTING ONLY [!]"
+echo "=========================================================="
+echo ""
+echo "[*] Summoning Magic Power... SUCCESS"
+echo "[*] Granting Root & Network Permissions... SUCCESS"
+echo "[*] LAUNCHING ONESHOT MAGIC ENGINE..."
+echo ""
 
-if [ ! -f "$USER_DB" ]; then
-    touch "$USER_DB"
-fi
-
-CURRENT_STATUS=$(grep "^$UNIQUE_ID" "$USER_DB" | tail -n 1 | cut -d'|' -f2 | tr -d '[:space:]')
-
-if [ "$CURRENT_STATUS" = "blocked" ]; then
-    echo -e "\n[!] ACCESS DENIED: Your account has been BLOCKED by Admin!\n"
-    exit 1
-fi
-
-if [ -z "$CURRENT_STATUS" ]; then
-    echo "$UNIQUE_ID|active|2030-01-01" >> "$USER_DB"
-    curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
-        -d chat_id="$CHAT_ID" \
-        -d text="🚨 নতুন কেউ আপনার টুলটি রান করেছে!%0A%0A🆔 ইউনিক আইডি: $UNIQUE_ID%0A📱 ডিভাইস: $(uname -o) $(uname -n)%0A⏰ সময়: $(date)" > /dev/null
-fi
-
-echo "[+] Access Granted. Starting tool..."
-# আপনার মূল টুলের কোড এখানে থাকবে
+# রুট পারমিশনে সঠিক HOME এবং PATH সেট করে oneshot রান করা
+su -c "export HOME=/data/data/com.termux/files/home; export PATH=\$PATH:/data/data/com.termux/files/usr/bin; /data/data/com.termux/files/usr/bin/oneshot -i wlan0 -K"
