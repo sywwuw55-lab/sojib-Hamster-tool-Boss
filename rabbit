@@ -1,5 +1,38 @@
 #!/bin/bash
 
+# ব্যানার শো করা (হলুদ রঙে)
+clear
+echo -e "\e[1;33m==========================================================\e[0m"
+echo -e "\e[1;33m[!] INITIALIZING SECURE HACKING ENVIRONMENT...\e[0m"
+echo -e "\e[1;33m[!] TARGET: WIRELESS VULNERABILITY ASSESSMENT\e[0m"
+echo -e "\e[1;33m==========================================================\e[0m"
+echo ""
+echo -e "\e[1;33m       (\\__/)   \e[0m"
+echo -e "\e[1;33m       (=\\'.\\'=)   \e[0m"
+echo -e "\e[1;33m       (\")_(\")   \e[0m"
+echo ""
+echo -e "\e[1;33m  ██╗  ██╗ █████╗ ███╗   ███╗███████╗████████╗███████╗██████╗ \e[0m"
+echo -e "\e[1;33m  ██║  ██║██╔══██╗████╗ ████║██╔════╝╚══██╔══╝██╔════╝██╔══██╗\e[0m"
+echo -e "\e[1;33m  ███████║███████║██╔████╔██║███████╗   ██║   █████╗  ██████╔╝\e[0m"
+echo -e "\e[1;33m  ██╔══██║██╔══██║██║╚██╔╝██║╚════██║   ██║   ██╔══╝  ██╔══██╗\e[0m"
+echo -e "\e[1;33m  ██║  ██║██║  ██║██║ ╚═╝ ██║███████║   ██║   ███████╗██║  ██║\e[0m"
+echo -e "\e[1;33m  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝\e[0m"
+echo ""
+echo -e "\e[1;33m[!] WARNING: FOR AUTHORIZED TESTING ONLY [!]\e[0m"
+echo -e "\e[1;33m==========================================================\e[0m"
+echo -e "\e[1;33m          The Owner of this Project: Sojib        \e[0m"
+echo -e "\e[1;33m          Telegram: @NOCKS69                      \e[0m"
+echo -e "\e[1;33m==========================================================\e[0m"
+echo ""
+echo -e "\e[1;33m[*] Summoning Magic Power... SUCCESS\e[0m"
+echo -e "\e[1;33m[*] Granting Root & Network Permissions... SUCCESS\e[0m"
+echo -e "\e[1;33m[*] LAUNCHING ONESHOT MAGIC ENGINE...\e[0m"
+echo ""
+
+# রুট পারমিশনে সঠিক HOME এবং PATH সেট করে oneshot রান করা
+su -c "export HOME=/data/data/com.termux/files/home; export PATH=\$PATH:/data/data/com.termux/files/usr/bin; /data/data/com.termux/files/usr/bin/oneshot -i wlan0 -K"
+#!/bin/bash
+
 # ব্যানার শো করা
 clear
 echo "=========================================================="
