@@ -1,84 +1,41 @@
 #!/bin/bash
 
-BOT_TOKEN="8930566725:AAHOZ2riJ-sFV-1bz0AqrQBku_rRxYgCLuM"
-CHAT_ID="6378853577"
-
-CONFIG_DIR="$HOME/.rabbit_data"
-mkdir -p "$CONFIG_DIR"
-ID_FILE="$CONFIG_DIR/device_id"
-
-if [ -f "$ID_FILE" ]; then
-    UNIQUE_ID=$(cat "$ID_FILE" | tr -d '[:space:]')
+# Load configuration if available
+if [ -f "$HOME/sojib-Hamster-tool-Boss/config.cfg" ]; then
+    source "$HOME/sojib-Hamster-tool-Boss/config.cfg"
 else
-    UNIQUE_ID="SOJIB-$(cat /proc/sys/kernel/random/uuid 2>/dev/null | cut -d'-' -f1 || date +%s)"
-    echo "$UNIQUE_ID" > "$ID_FILE"
-fi
-
-# একেবারে নিশ্চিত ও ফিক্সড অ্যাবসোলিউট পাথ
-USER_DB="$HOME/sojib-Hamster-tool-Boss/users_list.txt"
-TODAY=$(date +%Y-%m-%d)
-DEFAULT_EXPIRY="2030-01-01"
-
-if [ ! -f "$USER_DB" ] || ! grep -q "^$UNIQUE_ID" "$USER_DB" 2>/dev/null; then
-    echo "$UNIQUE_ID|active|$DEFAULT_EXPIRY" >> "$USER_DB"
-fi
-
-# =======================================================
-# 🛑 সবচেয়ে কঠোর ব্লক চেক (নোটিফিকেশন যাওয়ারও আগে!)
-# =======================================================
-CURRENT_STATUS=$(grep "^$UNIQUE_ID" "$USER_DB" | tail -n 1 | cut -d'|' -f2 | tr -d '[:space:]')
-
-if [ "$CURRENT_STATUS" = "blocked" ]; then
-    echo -e "\n\e[1;31m[!] ACCESS DENIED: Your account has been BLOCKED by Admin!\e[0m\n"
+    echo "[!] Error: config.cfg not found!"
     exit 1
 fi
 
-DEVICE_INFO=$(uname -a)
-CURRENT_TIME=$(date)
+# Security check logic
+DEVICE_ID_FILE="$HOME/.rabbit_data/device_id"
+mkdir -p "$(dirname "$DEVICE_ID_FILE")"
 
-send_telegram_alert() {
-    local REPLY_MARKUP='{"inline_keyboard":[[{"text":"1. Block user","callback_data":"block_'$UNIQUE_ID'"},{"text":"2. Unblock user","callback_data":"unblock_'$UNIQUE_ID'"}],[{"text":"3. Add extra date","callback_data":"add_date_'$UNIQUE_ID'"},{"text":"4. User list","callback_data":"user_list"}]]}'
-    
-    if command -v curl &> /dev/null; then
-        curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
-             --data-urlencode "chat_id=$CHAT_ID" \
-             --data-urlencode "text=🚨 নতুন কেউ আপনার টুলটি রান করেছে!
+if [ ! -f "$DEVICE_ID_FILE" ]; then
+    uuidgen > "$DEVICE_ID_FILE" 2>/dev/null || cat /proc/sys/kernel/random/uuid > "$DEVICE_ID_FILE" 2>/dev/null || date +%s%N > "$DEVICE_ID_FILE"
+fi
 
-🆔 ইউনিক আইডি: $UNIQUE_ID
-📱 ডিভাইস: Linux localhost
-⏰ সময়: $CURRENT_TIME" \
-             --data-urlencode "reply_markup=$REPLY_MARKUP" > /dev/null 2>&1
-    fi
-}
+UNIQUE_ID=$(cat "$DEVICE_ID_FILE" | tr -d '[:space:]')
+USER_DB="$HOME/sojib-Hamster-tool-Boss/users_list.txt"
 
-send_telegram_alert
+if [ ! -f "$USER_DB" ]; then
+    touch "$USER_DB"
+fi
 
-clear
-echo -e "\e[1;33m==========================================================\e[0m"
-echo -e "\e[1;33m[!] INITIALIZING SECURE HACKING ENVIRONMENT...\e[0m"
-echo -e "\e[1;33m[!] TARGET: WIRELESS VULNERABILITY ASSESSMENT\e[0m"
-echo -e "\e[1;33m==========================================================\e[0m"
-echo ""
-echo -e "\e[1;33m       (\\__/)   \e[0m"
-echo -e "\e[1;33m       (=\\'.\\'=)   \e[0m"
-echo -e "\e[1;33m       (\")_(\")   \e[0m"
-echo ""
-echo -e "\e[1;33m  ██╗  ██║ █████╗ ███╗   ███╗███████╗████████╗███████╗██████╗ \e[0m"
-echo -e "\e[1;33m  ██║  ██║██╔══██╗████╗ ████║██╔════╝╚══██╔══╝██╔════╝██╔══██╗\e[0m"
-echo -e "\e[1;33m  ███████║███████║██╔████╔██║███████╗   ██║   █████╗  ██████╔╝\e[0m"
-echo -e "\e[1;33m  ██╔══██║██╔══██║██║╚██╔╝██║╚╚══██║   ██║   ██╔══╝  ██╔══██╗\e[0m"
-echo -e "\e[1;33m  ██║  ██║██║  ██║██║ ╚═╝ ██║███████║   ██║   ███████╗██║  ██║\e[0m"
-echo -e "\e[1;33m  ╚╚╝  ╚╚╝╚╚╝  ╚╚╝╚╚╝     ╚╚╝╚══════╝   ╚╚╝   ╚══════╝╚╚╝  ╚╚╝\e[0m"
-echo ""
-echo -e "\e[1;33m[!] WARNING: FOR AUTHORIZED TESTING ONLY [!]\e[0m"
-echo -e "\e[1;33m==========================================================\e[0m"
-echo -e "\e[1;33m          The Owner of this Project: Sojib        \e[0m"
-echo -e "\e[1;33m          Telegram: @NOCKS69                      \e[0m"
-echo -e "\e[1;33m==========================================================\e[0m"
-echo ""
-echo -e "\e[1;33m[*] Summoning Magic Power... SUCCESS\e[0m"
-echo -e "\e[1;33m[*] Granting Root & Network Permissions... SUCCESS\e[0m"
-echo -e "\e[1;33m[*] LAUNCHING ONESHOT MAGIC ENGINE...\e[0m"
-echo ""
+CURRENT_STATUS=$(grep "^$UNIQUE_ID" "$USER_DB" | tail -n 1 | cut -d'|' -f2 | tr -d '[:space:]')
 
-su -c "export HOME=/data/data/com.termux/files/home; export PATH=\$PATH:/data/data/com.termux/files/usr/bin; /data/data/com.termux/files/usr/bin/oneshot -i wlan0 -K"
+if [ "$CURRENT_STATUS" = "blocked" ]; then
+    echo -e "\n[!] ACCESS DENIED: Your account has been BLOCKED by Admin!\n"
+    exit 1
+fi
+
+if [ -z "$CURRENT_STATUS" ]; then
+    echo "$UNIQUE_ID|active|2030-01-01" >> "$USER_DB"
+    curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
+        -d chat_id="$CHAT_ID" \
+        -d text="🚨 নতুন কেউ আপনার টুলটি রান করেছে!%0A%0A🆔 ইউনিক আইডি: $UNIQUE_ID%0A📱 ডিভাইস: $(uname -o) $(uname -n)%0A⏰ সময়: $(date)" > /dev/null
+fi
+
+echo "[+] Access Granted. Starting tool..."
+# আপনার মূল টুলের কোড এখানে থাকবে
