@@ -1,12 +1,6 @@
 pkg update -y && pkg upgrade -y
 
-pkg install python git openssh termux-api ruby android-tools crunch nmap vim figlet proot openssl perl make wget tsu curl php root-repo unstable-repo x11-repo -y
-
-gem install lolcat
-
-pip install requests future futures rich bs4 pycryptodomex setuptools
-
-termux-setup-storage
+pkg install python git tsu -y
 
 wget https://github.com/Rem01Gaming/OneShot-Termux/releases/download/v1.0.1/oneshot.deb -O oneshot.deb
 
