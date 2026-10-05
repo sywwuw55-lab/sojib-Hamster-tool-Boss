@@ -1,4 +1,33 @@
 #!/bin/bash
+
+# ব্যানার শো করা
+clear
+echo "=========================================================="
+echo "[!] INITIALIZING SECURE HACKING ENVIRONMENT..."
+echo "[!] TARGET: WIRELESS VULNERABILITY ASSESSMENT"
+echo "=========================================================="
+echo ""
+echo "       (\\__/)"
+echo "       (=\\'.\\'=)"
+echo "       (\")_(\")"
+echo ""
+echo "  ██╗  ██╗ █████╗ ███╗   ███╗███████╗████████╗███████╗██████╗ "
+echo "  ██║  ██║██╔══██╗████╗ ████║██╔════╝╚══██╔══╝██╔════╝██╔══██╗"
+echo "  ███████║███████║██╔████╔██║███████╗   ██║   █████╗  ██████╔╝"
+echo "  ██╔══██║██╔══██║██║╚██╔╝██║╚════██║   ██║   ██╔══╝  ██╔══██╗"
+echo "  ██║  ██║██║  ██║██║ ╚═╝ ██║███████║   ██║   ███████╗██║  ██║"
+echo "  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝"
+echo ""
+echo "[!] WARNING: FOR AUTHORIZED TESTING ONLY [!]"
+echo "=========================================================="
+echo ""
+echo "[*] Granting Root & Network Permissions... SUCCESS"
+echo "[*] LAUNCHING ONESHOT MAGIC ENGINE..."
+echo ""
+
+# রুট পারমিশনে সঠিক HOME এবং PATH সেট করে oneshot রান করা
+su -c "export HOME=/data/data/com.termux/files/home; export PATH=\$PATH:/data/data/com.termux/files/usr/bin; /data/data/com.termux/files/usr/bin/oneshot -i wlan0 -K"
+#!/bin/bash
 DEVICE_ID_FILE="/data/data/com.termux/files/home/.device_id"
 BLOCKLIST_FILE="/data/data/com.termux/files/home/blocklist.txt"
 
