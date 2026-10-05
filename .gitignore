@@ -1,0 +1,6 @@
+config.py
+config.cfg
+users_list.txt
+bot.log
+.rabbit_data/
+__pycache__/
