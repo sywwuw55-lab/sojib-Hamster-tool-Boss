@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ANSI Color Code for Yellow
-YELLOW="\033[1;33m"
+YELLOW="\033[1;34m"
 NC="\033[0m" # No Color (Reset)
 
 # ব্যানার শো করা
