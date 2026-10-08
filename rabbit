@@ -19,7 +19,7 @@ echo "  ██╗  ██╗ █████╗ ███╗   ███╗█�
 echo "  ██║  ██║██╔══██╗████╗ ████║██╔════╝╚══██╔══╝██╔════╝██╔══██╗"
 echo "  ███████║███████║██╔████╔██║███████╗   ██║   █████╗  ██████╔╝"
 echo "  ██╔══██║██╔══██║██║╚██╔╝██║╚════██║   ██║   ██╔══╝  ██╔══██╗"
-echo "  ██║  ██║██║  ██║██║ ╚═╝ ██║███████║   ██║   ███████╗██║  ██║"
+echo "  ██║  ██║██║  ██║██║ ╚═╝ ██║███████║   ██║   ███████║██║  ██║"
 echo "  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝"
 echo ""
 echo "[!] WARNING: FOR AUTHORIZED TESTING ONLY [!]"
@@ -34,6 +34,5 @@ echo "                 Contact To Buy"
 echo "==========================================================${NC}"
 echo ""
 
-# রুট পারমিশনে সঠিক HOME এবং PATH সেট করে oneshot রান করা
-su -c "export HOME=/data/data/com.termux/files/home; export PATH=\$PATH:/data/data/com.termux/files/usr/bin; /data/data/com.termux/files/usr/bin/oneshot -i wlan0 -K"
-
+# সঠিক PATH, HOME এবং পাইথন কমান্ড দিয়ে oneshot রান করার ফাইনাল কমান্ড
+su -c "export PATH=/data/data/com.termux/files/usr/bin:\$PATH; export HOME=/data/data/com.termux/files/home; python3 ~/OneShot-Termux/src/oneshot -i wlan0 -K"
