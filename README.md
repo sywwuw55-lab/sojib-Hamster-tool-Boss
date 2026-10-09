@@ -1,6 +1,6 @@
 🚀 Rabbit & Termux Tool Installation
 
-📌 ধাপ ১: Termux Update
+📌 ধাপ ১: Termux Update & Upgrade
 
 pkg update -y && pkg upgrade -y
 
@@ -24,11 +24,11 @@ git clone https://github.com/Rem01Gaming/OneShot-Termux.git
 
 git clone https://github.com/sywwuw55-lab/sojib-Hamster-tool-Boss.git
 
-📌 ধাপ ৭: Tool Folder-এ প্রবেশ
+📌 ধাপ ৭: Rabbit Folder-এ প্রবেশ
 
 cd sojib-Hamster-tool-Boss
 
-📌 ধাপ ৮: Execute Permission দিন
+📌 ধাপ ৮: Execute Permission দেওয়া
 
 chmod +x rabbit
 
@@ -36,12 +36,12 @@ chmod +x rabbit
 
 cp rabbit /data/data/com.termux/files/usr/bin/rabbit
 
-📌 ধাপ ১০: Rabbit চালু করুন
+📌 ধাপ ১০: Rabbit Tool চালু করা
 
 rabbit
 
 ---
 
-💚 প্রতিটি কমান্ড আলাদাভাবে কপি করুন এবং Termux-এ পেস্ট করুন।
+💚 প্রতিটি ধাপের কমান্ড আলাদাভাবে Copy করে Termux-এ Paste করুন।
 
-⚠️ কোনো কমান্ড চালানোর আগে সেটির কাজ বুঝে নিন।
+⚠️ নোট: একই Repository আগে Clone করা থাকলে "git clone" কমান্ডে error আসতে পারে।
