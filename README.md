@@ -36,7 +36,7 @@ git clone https://github.com/Rem01Gaming/OneShot-Termux.git
 git clone https://github.com/sywwuw55-lab/sojib-Hamster-tool-Boss.git
 ```
 
-### 📌 ধাপ ৭: Tool Folder-এ প্রবেশ
+### 📌 ধাপ ৭: Rabbit Folder-এ প্রবেশ
 
 ```bash
 cd sojib-Hamster-tool-Boss
@@ -59,3 +59,6 @@ cp rabbit /data/data/com.termux/files/usr/bin/rabbit
 ```bash
 rabbit
 ```
+
+---
+💚 প্রতিটি ধাপের কমান্ড আলাদাভাবে কপি করে Termux-এ চালান।
