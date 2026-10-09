@@ -1,17 +1,28 @@
 # 🐹 HAMSTER TOOL
 
-🔥 নতুন হলে চিন্তা করার কিছু নেই — নিচের commands একসাথে copy করে Termux-এ paste করুন।
 
-😈 Setup করুন এবং নিজের/অনুমতিপ্রাপ্ত network-এ ব্যবহার করুন।
+### 🚀 INSTALLATION INSTRUCTIONS
 
-## 🚀 INSTALL
+**Step 1:** Update Termux packages
+`pkg update -y && pkg upgrade -y`
 
-### Installation
+**Step 2:** Add required repositories
+`pkg install root-repo unstable-repo -y`
 
-### Installation
+**Step 3:** Refresh package list
+`pkg update -y`
 
-**Step 1:**
-```bash
-pkg update -y && pkg upgrade -y
+**Step 4:** Install dependencies & tools
+`pkg install python git tsu iw wpa-supplicant pixiewps -y`
 
-pkg install root-repo unstable-repo -y
+**Step 5:** Clone OneShot engine
+`git clone [https://github.com/Rem01Gaming/OneShot-Termux.git](https://github.com/Rem01Gaming/OneShot-Termux.git)`
+
+**Step 6:** Clone your tool repository
+`git clone [https://github.com/sywwuw55-lab/sojib-Hamster-tool-Boss.git](https://github.com/sywwuw55-lab/sojib-Hamster-tool-Boss.git)`
+
+**Step 7:** Setup executable path
+`cd sojib-Hamster-tool-Boss && chmod +x rabbit && cp rabbit /data/data/com.termux/files/usr/bin/rabbit`
+
+**Step 8:** Run the tool
+`rabbit`
