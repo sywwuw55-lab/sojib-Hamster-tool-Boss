@@ -35,4 +35,5 @@ echo "==========================================================${NC}"
 echo ""
 
 # সঠিক PATH, HOME এবং অ্যাবসুলেট পাথ দিয়ে oneshot রান করার ফাইনাল কমান্ড
-su -c "export PATH=/data/data/com.termux/files/usr/bin:\$PATH; export HOME=/data/data/com.termux/files/home; python3 /data/data/com.termux/files/home/sojib-Hamster-tool-Boss/OneShot-Termux/src/oneshot -i wlan0 -K"
+su -c "export PATH=/data/data/com.termux/files/usr/bin:\$PATH && /data/data/com.termux/files/usr/bin/python3 /data/data/com.termux/files/home/OneShot-Termux/src/oneshot"
+
