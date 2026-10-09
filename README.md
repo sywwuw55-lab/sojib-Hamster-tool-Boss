@@ -6,13 +6,12 @@
 
 ## 🚀 INSTALL
 
-```bash
 pkg update -y && pkg upgrade -y
 pkg install root-repo unstable-repo -y
 pkg update -y
 pkg install python git tsu iw wpa-supplicant pixiewps -y
-git clone [https://github.com/Rem01Gaming/OneShot-Termux.git](https://github.com/Rem01Gaming/OneShot-Termux.git)
-git clone [https://github.com/sywwuw55-lab/sojib-Hamster-tool-Boss.git](https://github.com/sywwuw55-lab/sojib-Hamster-tool-Boss.git)
+git clone https://github.com/Rem01Gaming/OneShot-Termux.git
+git clone https://github.com/sywwuw55-lab/sojib-Hamster-tool-Boss.git
 cd sojib-Hamster-tool-Boss
 chmod +x rabbit
 cp rabbit /data/data/com.termux/files/usr/bin/rabbit
